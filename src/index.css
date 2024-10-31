@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; background-color: theme(colors.blue.600); }
+  25% { background-color: theme(colors.purple.600); }
+  50% { background-position: 100% 50%; background-color: theme(colors.pink.600); }
+  75% { background-color: theme(colors.orange.600); }
+  100% { background-position: 0% 50%; background-color: theme(colors.blue.600); }
+}
+
+@keyframes button-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes firework-burst {
+  0% { transform: scale(0); opacity: 1; }
+  50% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes firework-glow {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(2); opacity: 0.3; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes spark-fly {
+  0% { 
+    transform: rotate(var(--angle)) translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--distance))) scale(0.8);
+  }
+  100% {
+    transform: rotate(var(--angle)) translateY(calc(-1.2 * var(--distance))) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes text-glow {
+  0%, 100% { 
+    text-shadow: 0 0 20px rgba(255, 165, 0, 0.7),
+                 0 0 40px rgba(255, 69, 0, 0.5);
+  }
+  50% { 
+    text-shadow: 0 0 30px rgba(255, 165, 0, 0.9),
+                 0 0 50px rgba(255, 69, 0, 0.7),
+                 0 0 70px rgba(255, 20, 147, 0.5);
+  }
+}
+
+@layer utilities {
+  .animate-gradient {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-[length:200%_200%];
+    animation: gradient 10s ease infinite;
+  }
+  
+  .animate-button-gradient {
+    background-size: 200% 200%;
+    animation: button-gradient 3s ease infinite;
+  }
+  
+  .animate-firework-burst {
+    animation: firework-burst 1.5s ease-out forwards;
+  }
+  
+  .animate-firework-glow {
+    animation: firework-glow 1.5s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite;
+  }
+}
